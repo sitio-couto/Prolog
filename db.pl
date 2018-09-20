@@ -57,7 +57,7 @@ drop_last([X],[]).
 drop_last([X|R],L) :- drop_last(R,Z), L = [X|Z].
 
 split_last([X],[],X).
-split_last([X|R],L,Y) :- remove_last(R,Z,Y), L = [X|Z].
+split_last([X|R],L,Y) :- split_last(R,Z,Y), L = [X|Z].
 
 shiftr(L,X) :- split_last(L,Z,Y), X = [Y|Z].
 
