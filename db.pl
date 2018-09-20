@@ -82,12 +82,7 @@ remove_all(X,[Y|R],W) :- remove_all(X,R,Z), W = [Y|Z].
 removen(_,0,L,L).
 removen(X,N,L,R) :- N2 is N-1, removen(X,N2,L,Z), remove(X,Z,R).
 
-% remove_last(X,L,W) :- remove_last(X,L,W,C).
-% remove_last(_,[],[],0).
-% remove_last(X,[Y|R],Z,C) :-
-%   remove_last(X,R,Z,C2), Y==X, C2==0, C is C2+1.
-% remove_last(X,[Y|R],[Y|Z],C) :-
-%   remove_last(X,R,Z,C), Y=/=X.
+remove_last(X,L,W) :- revert(L,Z), remove(X,Z,T), revert(T,W).
 
 switch(_,_,[],[]).
 switch(X,Y,[X|R],[Y|R]).
