@@ -18,7 +18,6 @@ contains(X,[X|R]).
 contains(X,[Y|R]) :- contains(X,R).
 
 pos(X,L,P) :- pos(X,L,P,1).
-pos(_,[],no,_).
 pos(X,[X|_],Acc,Acc).
 pos(X,[Y|R],P,Acc) :- Acc2 is Acc+1, pos(X,R,P,Acc2).
 
