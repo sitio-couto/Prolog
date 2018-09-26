@@ -1,3 +1,5 @@
+
+% ARVORES ----------------------------------------------------------------------
 t(7,t(3,t(2,n,n),t(5,n,n)),t(11,t(9,n,n),t(13,n,n))).
 t(11,t(9,t(7,t(3,t(2,n,n),t(5,n,n)),n),n),t(13,n,n)).
 
@@ -40,3 +42,8 @@ preOrder(t(N,L,R),I) :- preOrder(L,A), preOrder(R,B), append(A,B,Z), I = [N|Z].
 
 makeBst([X],t(X,n,n)).
 makeBst([X|R],T) :- makeBst(R,Z), addNode(X,Z,T).
+
+% DICIONARIOS ------------------------------------------------------------------
+[d(1,'a'),d(2,'b'),d(3,'c'),d(4,'d'),d(5,'e'),d(6,'f')].
+
+findKey(X,[d(K,V)|R],F) :- K==X -> F = V ; findKey(X,R,F).
