@@ -28,3 +28,9 @@ dropNode(N,t(X,L,R),E) :- N > X, dropNode(N,R,Z), E = t(X,L,Z).
 
 depth(n,-1).
 depth(t(N,L,R),D) :- depth(L,A), depth(R,B), (A>B -> D is A+1 ; D is B+1).
+
+prepend([],N,B,[N|B]).
+prepend([X|R],N,B,L) :- prepend(R,N,B,Z), L = [X|Z].
+
+inOrder(n,[]).
+inOrder(t(N,L,R),I) :- inOrder(L,A), inOrder(R,B), prepend(A,N,B,I).
