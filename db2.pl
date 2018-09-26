@@ -10,6 +10,7 @@ checkBstL(X,t(N,L,R)) :- X > N, checkBstL(N,L), checkBstR(N,R).
 checkBstR(X,n).
 checkBstR(X,t(N,L,R)) :- X < N, checkBstL(N,L), checkBstR(N,R).
 
-addNode(N,n,E) :- addNode(N,R).
-addNode(N,t(X,L,R)) :- N < X, addNode(N,L).
-addNode(N,t(X,L,R)) :- N > X, addNode(N,R).
+addNode(N,n,E) :- E = t(N,n,n).
+addNode(N,t(N,L,R),E) :- E = t(N,L,R).
+addNode(N,t(X,L,R),E) :- N < X, addNode(N,L,Z), E = t(X,Z,R).
+addNode(N,t(X,L,R),E) :- N > X, addNode(N,R,Z), E = t(X,L,Z).
