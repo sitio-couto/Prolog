@@ -18,7 +18,6 @@ contains(X,[X|R]).
 contains(X,[Y|R]) :- contains(X,R).
 
 pos(X,L,P) :- pos(X,L,P,1).
-pos(_,[],no,_).
 pos(X,[X|_],Acc,Acc).
 pos(X,[Y|R],P,Acc) :- Acc2 is Acc+1, pos(X,R,P,Acc2).
 
@@ -57,7 +56,7 @@ drop_last([X],[]).
 drop_last([X|R],L) :- drop_last(R,Z), L = [X|Z].
 
 split_last([X],[],X).
-split_last([X|R],L,Y) :- remove_last(R,Z,Y), L = [X|Z].
+split_last([X|R],L,Y) :- split_last(R,Z,Y), L = [X|Z].
 
 shiftr(L,X) :- split_last(L,Z,Y), X = [Y|Z].
 
