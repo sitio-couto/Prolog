@@ -14,3 +14,12 @@ addNode(N,n,E) :- E = t(N,n,n).
 addNode(N,t(N,L,R),E) :- E = t(N,L,R).
 addNode(N,t(X,L,R),E) :- N < X, addNode(N,L,Z), E = t(X,Z,R).
 addNode(N,t(X,L,R),E) :- N > X, addNode(N,R,Z), E = t(X,L,Z).
+
+takeMinimum(t(N,n,R), S, C) :- S = R, C = N.
+takeMinimum(t(N,L,R), S, C) :- takeMinimum(L, Z, C), S = t(N,Z,R).
+
+dropNode(N,n,E) :- E = n.
+dropNode(N,t(N,L,R),E) :- takeMinimum(R,S,C), E = t(C,L,S).
+dropNode(N,t(N,L,n),E) :- E = L.
+dropNode(N,t(X,L,R),E) :- N < X, dropNode(N,L,Z), E = t(X,Z,R).
+dropNode(N,t(X,L,R),E) :- N > X, dropNode(N,R,Z), E = t(X,L,Z).
