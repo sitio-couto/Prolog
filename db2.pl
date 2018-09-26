@@ -34,3 +34,6 @@ prepend([X|R],N,B,L) :- prepend(R,N,B,Z), L = [X|Z].
 
 inOrder(n,[]).
 inOrder(t(N,L,R),I) :- inOrder(L,A), inOrder(R,B), prepend(A,N,B,I).
+
+preOrder(n,[]).
+preOrder(t(N,L,R),I) :- preOrder(L,A), preOrder(R,B), append(A,B,Z), I = [N|Z].
