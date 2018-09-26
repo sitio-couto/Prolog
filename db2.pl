@@ -1,4 +1,6 @@
 t(7,t(3,t(2,n,n),t(5,n,n)),t(11,t(9,n,n),t(13,n,n))).
+t(11,t(9,t(7,t(3,t(2,n,n),t(5,n,n)),n),n),t(13,n,n)).
+
 
 findNode(X,t(X,_,_)).
 findNode(X,t(N,L,_)) :- X < N, findNode(X,L).
@@ -23,3 +25,6 @@ dropNode(N,t(N,L,R),E) :- takeMinimum(R,S,C), E = t(C,L,S).
 dropNode(N,t(N,L,n),E) :- E = L.
 dropNode(N,t(X,L,R),E) :- N < X, dropNode(N,L,Z), E = t(X,Z,R).
 dropNode(N,t(X,L,R),E) :- N > X, dropNode(N,R,Z), E = t(X,L,Z).
+
+depth(n,-1).
+depth(t(N,L,R),D) :- depth(L,A), depth(R,B), (A>B -> D is A+1 ; D is B+1).
