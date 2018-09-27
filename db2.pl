@@ -51,3 +51,5 @@ findKey(X,[d(K,V)|R],F) :- K==X -> F = V ; findKey(X,R,F).
 addKey(X,Y,[],[d(X,Y)]).
 addKey(X,Y,[d(X,V)|R],F) :- F = [d(X,Y)|R].
 addKey(X,Y,[D|R],F) :- F = [D|Z], addKey(X,Y,R,Z).
+
+dropKey(X,[d(K,V)|R],F) :- K==X -> F = R ; F = [d(K,V)|Z], dropKey(X,R,Z).
