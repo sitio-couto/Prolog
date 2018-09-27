@@ -1,7 +1,7 @@
 
 % ARVORES ----------------------------------------------------------------------
-t(7,t(3,t(2,n,n),t(5,n,n)),t(11,t(9,n,n),t(13,n,n))).
-t(11,t(9,t(7,t(3,t(2,n,n),t(5,n,n)),n),n),t(13,n,n)).
+%  t(7,t(3,t(2,n,n),t(5,n,n)),t(11,t(9,n,n),t(13,n,n)))
+%  t(11,t(9,t(7,t(3,t(2,n,n),t(5,n,n)),n),n),t(13,n,n))
 
 
 findNode(X,t(X,_,_)).
@@ -44,7 +44,8 @@ makeBst([X],t(X,n,n)).
 makeBst([X|R],T) :- makeBst(R,Z), addNode(X,Z,T).
 
 % DICIONARIOS ------------------------------------------------------------------
-[d(1,'a'),d(2,'b'),d(3,'c'),d(4,'d'),d(5,'e'),d(6,'f')].
+%  [d(1,'a'),d(2,'b'),d(3,'c'),d(4,'d'),d(5,'e'),d(6,'f')]
+%  [d('a',1),d('b',2),d('c',3),d('d',4),d('e',5),d('f',6)]
 
 findKey(X,[d(K,V)|R],F) :- K==X -> F = V ; findKey(X,R,F).
 
@@ -53,3 +54,7 @@ addKey(X,Y,[d(X,V)|R],F) :- F = [d(X,Y)|R].
 addKey(X,Y,[D|R],F) :- F = [D|Z], addKey(X,Y,R,Z).
 
 dropKey(X,[d(K,V)|R],F) :- K==X -> F = R ; F = [d(K,V)|Z], dropKey(X,R,Z).
+
+sum1(X,[],[d(X,1)]).
+sum1(X,[d(X,V)|R],F) :- F = [d(X,Z)|R], Z is V+1.
+sum1(X,[D|R],F) :- F = [D|Z], sum1(X,R,Z).
