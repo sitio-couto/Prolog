@@ -47,3 +47,7 @@ makeBst([X|R],T) :- makeBst(R,Z), addNode(X,Z,T).
 [d(1,'a'),d(2,'b'),d(3,'c'),d(4,'d'),d(5,'e'),d(6,'f')].
 
 findKey(X,[d(K,V)|R],F) :- K==X -> F = V ; findKey(X,R,F).
+
+addKey(X,Y,[],[d(X,Y)]).
+addKey(X,Y,[d(X,V)|R],F) :- F = [d(X,Y)|R].
+addKey(X,Y,[D|R],F) :- F = [D|Z], addKey(X,Y,R,Z).
