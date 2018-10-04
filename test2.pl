@@ -22,4 +22,4 @@ insereabb(K,V,arv(X,Y,L,R),E) :- N > K, insereabb(K,V,R,Z), E = t(X,Y,L,Z).
 
 getdic(K,D,V) :- lookupabb(K,D,V).
 xgetdic(K,D,Df,V) :- lookupabb(K,D,Z) -> V=Z ; V=Df.
-putdic(K,V,D,Dn) :- lookupabb(K,D,_) -> trocaabb(K,,V). ; V=Df.
+putdic(K,V,D,Dn) :- lookupabb(K,D,_) -> trocaabb(K,V,D,Dn) ; insereabb(K,V,D,Dn).
